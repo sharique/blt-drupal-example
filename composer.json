@@ -15,7 +15,6 @@
         "drupal/config_split": "^1.0.0",
         "drupal/core-composer-scaffold": "^8.8",
         "drupal/core-recommended": "^8.8.0",
-        "drupal/devel": "^2.0.0",
         "drupal/features": "^3.8.0",
         "drupal/qa_accounts": "^1.0.0-alpha1",
         "drupal/seckit": "^1.0.0-alpha2",
@@ -23,7 +22,9 @@
         "mikemadison13/blt-lando": "dev-main"
     },
     "require-dev": {
-        "acquia/blt-require-dev": "11.x-dev"
+        "acquia/blt-require-dev": "11.x-dev",
+        "drupal/devel": "^4.1",
+        "phpcompatibility/php-compatibility": "^9.3"
     },
     "config": {
         "platform": {
@@ -114,6 +115,8 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
+        "post-install-cmd": "\"vendor/bin/phpcs\" --config-set installed_paths vendor/phpcompatibility/php-compatibility",
+        "post-update-cmd": "\"vendor/bin/phpcs\" --config-set installed_paths vendor/phpcompatibility/php-compatibility",
         "post-create-project-cmd": [
             "blt internal:create-project:init-repo"
         ],
